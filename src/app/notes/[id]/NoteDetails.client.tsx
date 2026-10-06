@@ -2,7 +2,7 @@
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNoteById } from '@/lib/api';
-import css from './NoteDetails.module.css'; // Переконайся, що імпортуєш свій CSS-модуль
+import css from './NoteDetails.client.module.css'; 
 import error from './error';
 
 export default function NoteDetailsClient() {
@@ -32,7 +32,6 @@ export default function NoteDetailsClient() {
           </div>
           <p className={css.tag}>{note.tag}</p>
           <p className={css.content}>{note.content}</p>
-          {/* Зверни увагу: перевір, як саме називається поле дати у твоєму API (наприклад, createdAt, date тощо) */}
           <p className={css.date}>{note.createdAt || 'Created date'}</p>
         </div>
       </div>

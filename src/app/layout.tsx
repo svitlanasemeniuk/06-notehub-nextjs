@@ -6,7 +6,7 @@ import { TanStackProvider } from "../components/TanStackProvider/TanStackProvide
 
 export const metadata: Metadata = {
   title: "NoteHub",
-  description: "Менеджер твоїх нотаток",
+  description: "Manager of your notes",
 };
 
 export default function RootLayout({
@@ -19,7 +19,6 @@ export default function RootLayout({
       <body>
         <TanStackProvider>
           <Header />
-          {/* Усі наші сторінки (Home, Notes) будуть рендеритися замість {children} */}
           {children} 
           <Footer />
         </TanStackProvider>
