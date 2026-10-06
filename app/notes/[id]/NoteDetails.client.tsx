@@ -3,7 +3,6 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNoteById } from '@/lib/api';
 import css from './NoteDetails.client.module.css'; 
-import error from './error';
 
 export default function NoteDetailsClient() {
   const params = useParams();
@@ -20,7 +19,6 @@ export default function NoteDetailsClient() {
 
   if (isError || !note) {
     return <p>Something went wrong.</p>;
-    console.error('Причина помилки React Query:', error);
   }
 
   return (
