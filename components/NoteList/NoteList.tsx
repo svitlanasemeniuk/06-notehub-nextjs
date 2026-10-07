@@ -17,7 +17,7 @@ const NoteList = ({ notes }: NoteListProps) => {
             queryClient.invalidateQueries({ queryKey: ['notes'] });
         },
         onError: (error) => {
-            console.error('Помилка при видаленні:', error);
+            console.error('Error during deletion:', error);
         }
     });
     console.log(notes) 
@@ -31,7 +31,9 @@ const NoteList = ({ notes }: NoteListProps) => {
                     <div className={css.footer}>
                         <span className={css.tag}>{note.tag}</span>
                         
-                        <Link href={`/notes/${note.id}`}>View details</Link>
+                        <Link href={`/notes/${note.id}`} className={css.detailsButton}>
+                        View details
+                        </Link>
 
                         <button 
                             className={css.deleteButton} 
