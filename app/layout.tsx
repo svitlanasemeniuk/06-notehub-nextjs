@@ -16,10 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="wrapper">
         <TanStackProvider>
           <Header />
-          {children} 
+          <main className="mainContent">
+            {children}
+          </main>
           <Footer />
         </TanStackProvider>
       </body>

@@ -29,3 +29,23 @@
 .button:hover {
     background-color: #0b5ed7;
 }
+.controls {
+    display: flex;
+    justify-content: space-between;
+    /* Розштовхує крайні елементи вліво і вправо */
+    align-items: center;
+    /* Рівняє всі елементи по центру вертикалі */
+    margin: 20px;
+    /* Робить відступ вниз до карток */
+}
+
+.createButton {
+    background-color: #0066ff;
+    /* Робимо кнопку синьою */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
