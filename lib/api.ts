@@ -17,7 +17,7 @@ interface FetchNotesResponse {
 }
 
 export const fetchNotes = async ({ page = 1, search = '' }: { page?: number, search?: string } = {}): Promise<FetchNotesResponse> => {
-  const response = await api.get('/notes', {
+  const response = await api.get<FetchNotesResponse>('/notes', {
     params: { page, search } 
   }); 
   return response.data;
@@ -35,6 +35,6 @@ export const deleteNote = async (noteId: string): Promise<Note> => {
 };
 
 export const fetchNoteById = async (id: string): Promise<Note> => {
-  const response = await api.get(`/notes/${id}`);
+  const response = await api.get<Note>(`/notes/${id}`);
   return response.data;
 };

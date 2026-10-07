@@ -9,17 +9,23 @@ import SearchBox from '@/components/SearchBox/SearchBox';
 import Pagination from '@/components/Pagination/Pagination';
 import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
-
+import { useDebounce } from 'use-debounce';
 
 
 export default function NotesClient() {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
   const { data: notes, isLoading, isError } = useQuery({
-    queryKey: ['notes', page, searchQuery],
-    queryFn: () => fetchNotes({ page, search: searchQuery }),
+    queryKey: ['notes', page, debouncedSearchQuery],
+    queryFn: () => fetchNotes({ page, search: debouncedSearchQuery }),
   });
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query); 
+    setPage(1); 
+  };
 
   if (isLoading) return <p>Loading...</p>;
   if (isError || !notes) return <p>Ooops! Error loading...</p>;
@@ -27,9 +33,8 @@ export default function NotesClient() {
   return (
     <div className={css.container}>
     
-      {/* 📦 Наша нова поличка для верхнього меню */}
       <div className={css.controls}>
-        <SearchBox onChange={setSearchQuery} />
+        <SearchBox onChange={handleSearchChange} />
       
         <Pagination
           currentPage={page}
