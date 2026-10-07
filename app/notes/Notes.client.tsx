@@ -37,22 +37,27 @@ export default function NotesClient() {
       <div className={css.controls}>
         <SearchBox onChange={handleSearchChange} />
       
-        <Pagination
-          currentPage={page}
-          totalPages={notes.totalPages}
-          onPageChange={setPage}
+        {notes.totalPages > 1 && (
+        <Pagination 
+          currentPage={page} 
+          totalPages={notes.totalPages} 
+          onPageChange={setPage} 
         />
+        )}
       
         <button className={css.createButton} onClick={() => setIsModalOpen(true)}>
           Create note +
         </button>
       </div>
 
-      <NoteList notes={notes.notes} />
+      {notes.notes.length > 0 &&
+        <NoteList notes={notes.notes} />}
     
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <NoteForm onClose={() => setIsModalOpen(false)} />
-      </Modal>
+        </Modal>
+)}
     </div>
   );
 }
